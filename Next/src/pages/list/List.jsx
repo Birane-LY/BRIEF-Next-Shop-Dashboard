@@ -1,6 +1,6 @@
 import './list.scss';
 import Sidebar from '../../components/Sidebar/Sidebar'
-import Navbar from '../../components/NavBar/Navbar'
+import Navbar from '../../components/NavBar/NavBar'
 
 const List = () => {
   return (

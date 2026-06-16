@@ -1,23 +1,23 @@
 
-const DarkModeReducer=(state,action)=>{
-    switch(action.type){
-        case "LIGHT":{
-            return {darkMode: false,}
-        };
+// export const DarkModeReducer=(state,action)=>{
+//     switch(action.type){
+//         case "LIGHT":{
+//             return {darkMode: false,}
+//         };
     
-        case "DARK":{
-            return {darkMode: true,}
-        };
+//         case "DARK":{
+//             return {darkMode: true,}
+//         };
     
 
-         case "TOGGLE":{
-            return {darkMode: !satisfies.darkMode,
+//          case "TOGGLE":{
+//             return {darkMode: state.darkMode,
 
-            };
-        } 
-        default:
-            return state;
+//             };
+//         } 
+//         default:
+//             return state;
 
   
-}}
-export default DarkModeReducer;
+// }}
+// export default DarkModeReducer;
