@@ -7,11 +7,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    
 
     .logo {
         font-size: 20px;
         font-weight: bold;
         color:#646149;
+        text-decoration: none;
     }
 }
 hr {
@@ -31,6 +33,7 @@ hr {
             font-size: 10px;
             font-weight: bold;
             color: #999;
+            text-align: left;
             margin-top: 15px;
             margin-bottom: 5px;
         }

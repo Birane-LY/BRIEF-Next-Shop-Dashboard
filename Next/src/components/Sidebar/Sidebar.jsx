@@ -27,7 +27,7 @@ const Sidebar = () => {
           <Link to= "/" style={{textDecoration:"none"}}>
           <li>
             <DashboardIcon className='icon'/>
-            <span>Tableau de Bord</span>
+            <span>Dashboard</span>
           </li>
           </Link>
           <p className='title'>Liste</p>
