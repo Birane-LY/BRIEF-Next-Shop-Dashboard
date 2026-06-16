@@ -6,7 +6,7 @@ import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNone
 import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBulletedOutlined';
 import { useContext } from 'react';
-import {DarkModeContext} from '../../context/darkModeContex';
+import {DarkModeContext} from '../../context/darkModeContext';
 
 function NavBar(){
     const {dispatch}= useContext(DarkModeContext);

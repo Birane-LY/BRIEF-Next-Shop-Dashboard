@@ -6,7 +6,7 @@ import NotificationsIcon from '@mui/icons-material/NotificationsActiveOutlined';
 import AccountIcon from '@mui/icons-material/AccountCircleRounded';
 import ExitIcon from '@mui/icons-material/ExitToAppRounded';
 import {Link} from "react-router-dom";
-import { DarkModeContext } from '../../context/darkModeContex';
+import { DarkModeContext } from '../../context/darkModeContext';
 
 import './sidebar.scss'
 
