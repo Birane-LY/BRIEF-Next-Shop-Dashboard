@@ -1,0 +1,34 @@
+.app.dark {
+    background-color: #222;
+    color: rgba(156 156 156);
+
+    .navbar {
+        color: #999;
+        border-color: #333;
+
+        .search {
+            border-color: gray;
+        }
+    }
+
+    .sidebar {
+        background-color: #222;
+        border-color: #333;
+
+        // .top {
+        //     c
+        // }
+        
+        hr {
+            border-color: #333;
+        }
+
+        ul {
+            li {
+                &:hover {
+                    background-color: #333;
+                }
+            }
+        }
+    }
+}
