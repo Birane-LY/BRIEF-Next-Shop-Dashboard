@@ -3,7 +3,7 @@ import NavBar from "../../components/NavBar/NavBar";
 
 function Home(){
     return(
-        <div classname="Home">
+        <div className="Home">
             <NavBar/>
             <Sidebar/>
         </div>
