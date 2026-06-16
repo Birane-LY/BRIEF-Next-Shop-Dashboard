@@ -2,6 +2,7 @@ import React from 'react'
 import Sidebar from "../../components/Sidebar/Sidebar";
 import NavBar from "../../components/NavBar/NavBar";
 import Table from "../../table/Table";
+import Products from '../../table/Products';
 
 import "./home.scss"
 
@@ -15,9 +16,12 @@ const Home = () => {
      <div className="listTitle">Dernières transactions</div>
      <Table />
       </div>
+       <div className="listTitle">Stocks actuels</div>
+         <Products />
+      </div>
     </div>
     
-    </div>
+ 
   )
 }
 

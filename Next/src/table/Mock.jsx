@@ -55,3 +55,47 @@ export const rows = [
         status: "Approuvé",
     }
 ];
+
+export const products = [
+   
+    { 
+        id: 12342,
+        product: "Acer Nitro 5",
+        img:"https://imgs.search.brave.com/bO0Ormbq_91AWJ60DIcT6gY3b7lYS_gtWuw8dXohsgg/rs:fit:800:600:1/g:ce/aHR0cHM6Ly93d3cu/bm90ZWJvb2tjaGVj/ay1jbi5jb20vdXBs/b2Fkcy90eF9uYmMy/L0FjZXJBc3BpcmVO/aXRybzVBTjUxNS01/NF9fM19fMDIuSlBH", 
+        amount: 120000,
+        stocks: 50,
+    },
+   
+    { 
+        id: 123932,
+        product: "Acer Moniter",
+        img:"https://imgs.search.brave.com/_MiA2bfBrWApJevdFByU9kcU-Y2SPzRApiSTy6Z3Vb8/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93d3cu/YmhwaG90b3ZpZGVv/LmNvbS9pbWFnZXMv/aW1hZ2VzMjUwMHgy/NTAwL2FjZXJfdW1f/cXgyYWFfMDA4X2tn/MjQyeV8yM184X2lw/c19mcmVlc3luY18x/NjIxODgzLmpwZw",
+        amount: 150000,
+        stocks: 10,
+    },
+   
+    { 
+        id: 1232142,
+        product: "Play Staion 5",
+        img:"https://imgs.search.brave.com/JRCzHeN7nUqSpEbW3DakcOK-DHeAZwJp6tDzdcWlV-k/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93d3cu/NTloYXJkd2FyZS5u/ZXQvd3AtY29udGVu/dC91cGxvYWRzLzIw/MjAvMDYvcHM1Lmpw/Zw",
+        amount: 250000,
+        stocks: 5,
+    },
+   
+    { 
+        id: 32342,
+        product: "SanDisk Drive",
+        img:"https://imgs.search.brave.com/VHYe5nrwXA5SbKtUV5cVmNQw8scoa0I5ySwKkEKjLks/rs:fit:1200:1000:1/g:ce/aHR0cHM6Ly85dG81/dG95cy5jb20vd3At/Y29udGVudC91cGxv/YWRzL3NpdGVzLzUv/MjAyMC8wNi9TYW5E/aXNrLUR1YWwtRHJp/dmUuanBnP3F1YWxp/dHk9ODImc3RyaXA9/YWxs",
+        amount: 50000,
+        stocks: 25,
+    },
+   
+    { 
+        id: 99342,
+        product: "Acer Nitro 7",
+        img:"https://imgs.search.brave.com/dr_Th6u8NSqVs8PgLIxMZESmqHbu6I9VqtjNIeAb3Xs/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9pbWFn/ZXMuYW5hbmR0ZWNo/LmNvbS9kb2NpLzE0/MjA3L05pdHJvLTdf/QU43MTUtNTFfMDUu/cG5n",
+        amount: 350000,
+        stocks: 3,
+    }
+];
+
