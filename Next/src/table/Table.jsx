@@ -80,8 +80,6 @@ const TableComponent = () => {
           {transactions.map((row) => (
             <TableRow key={row.id}>
               <TableCell className="tableCell">{row.id}</TableCell>
-              
-              {/* Cellule modifiée pour inclure l'image du produit */}
               <TableCell className="tableCell">
                 <div className="cellWrapper" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                   <img 

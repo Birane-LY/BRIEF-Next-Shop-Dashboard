@@ -1,7 +1,7 @@
 @import '../../style/variables';
 
 .navbar {
-  height: 60px;
+  height: 50px;
   border-bottom: 0.5px solid $border-color;
   display: flex;
   align-items: center;
@@ -9,6 +9,13 @@
   color: $text-primary;
   background: $background-light;
   transition: $transition;
+  position: fixed;
+  top: 0;
+  left: 220px; /* Démarre exactement là où la sidebar s'arrête */
+  right: 0;
+  height: 60px;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 
   .wrapper {
     display: flex;
@@ -125,6 +132,7 @@
 .dark .navbar {
   background: $background-dark;
   border-bottom-color: rgba($border-color, 0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 
   .wrapper {
     .search {
@@ -176,6 +184,47 @@
 
         span {
           color: rgba($text-light, 0.6);
+        }
+      }
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .navbar {
+    left: 60px;
+    height: 50px;
+
+    .wrapper {
+      padding: 0 15px;
+
+      .search {
+        input {
+          width: 100px;
+        }
+      }
+
+      .items {
+        gap: 4px;
+
+        .item {
+          padding: 4px 8px;
+
+          span {
+            display: none;
+          }
+
+          .avatar {
+            width: 30px;
+            height: 30px;
+          }
+
+          .counter {
+            width: 16px;
+            height: 16px;
+            font-size: 9px;
+          }
         }
       }
     }

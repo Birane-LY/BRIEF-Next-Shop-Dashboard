@@ -1,248 +1,331 @@
-// Variables basées sur votre palette de couleurs
-$primary-dark: #1E1E1C;
-$primary-green: #3D4A3A;
-$secondary-beige: #C8B8B9;
-$accent-brown: #8B6A4A;
-$background-light: #F7F5F0;
-$text-light: #F7F5F0;
-$text-dark: #1E1E1C;
+// Couleurs
+$primary: #3D4A3A;
+$secondary: #C8B8B9;
+$bg: #F7F5F0;
+$text: #1E1E1C;
+$error: #b8534a;
+$white: #ffffff;
 
-// OVERLAY (fond sombre derrière la popup)
+// Overlay
 .ajout-produit-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(30, 30, 28, 0.7); // Fond sombre semi-transparent
+  background: rgba(0,0,0,0.6);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; // Pour être au-dessus de tout
-  animation: fadeIn 0.3s ease; // Animation d'apparition
-
-  // Animation d'entrée
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
+  z-index: 1000;
 }
 
-// CONTAINER DE LA POPUP
+// Popup
 .ajout-produit-container {
+  background: $bg;
+  padding: 30px;
+  border-radius: 12px;
   max-width: 500px;
   width: 90%;
   max-height: 90vh;
-  overflow-y: auto; // Scroll si le contenu est trop grand
-  padding: 2rem;
-  background: $background-light;
-  border-radius: 16px;
-  box-shadow: 0 20px 60px rgba(30, 30, 28, 0.3);
-  border: 1px solid rgba($secondary-beige, 0.3);
+  overflow-y: auto;
   position: relative;
-  animation: slideUp 0.3s ease; // Animation de la popup
 
-  // Animation de la popup qui monte
-  @keyframes slideUp {
-    from {
-      transform: translateY(30px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-
-  // BOUTON FERMER (X)
   .close-btn {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
     background: none;
     border: none;
-    font-size: 1.5rem;
-    color: $primary-dark;
     cursor: pointer;
-    transition: all 0.3s ease;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 300;
+    color: $text;
 
     &:hover {
-      background: rgba($secondary-beige, 0.3);
-      transform: rotate(90deg);
+      color: $error;
     }
   }
 
   h2 {
-    font-family: 'Montserrat', 'Avenir', sans-serif;
-    font-weight: 600;
-    font-size: 1.5rem;
-    color: $primary-dark;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 3px solid $accent-brown;
-    letter-spacing: 0.5px;
-    padding-right: 2.5rem; // Pour ne pas chevaucher le bouton X
+    margin: 0 0 20px 0;
+    color: $text;
+    font-size: 22px;
+    padding-right: 30px;
   }
 
-  .ajout-form {
-    .form-group {
-      margin-bottom: 1.25rem;
+  // Formulaires
+  .form-group {
+    margin-bottom: 15px;
 
-      label {
-        display: block;
-        font-family: 'Montserrat', 'Avenir', sans-serif;
-        font-weight: 500;
-        font-size: 0.85rem;
-        color: $primary-dark;
-        margin-bottom: 0.4rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
+    label {
+      display: block;
+      font-weight: 600;
+      font-size: 13px;
+      margin-bottom: 4px;
+      color: $text;
+    }
 
-      input {
-        width: 100%; // Changé de 80% à 100%
-        padding: 0.7rem 1rem;
-        font-family: 'Montserrat', 'Avenir', sans-serif;
-        font-size: 1rem;
-        border: 2px solid rgba($secondary-beige, 0.5);
-        border-radius: 8px;
-        background: white;
-        color: $text-dark;
-        transition: all 0.3s ease;
+    input, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: 0.3s;
+
+      &:focus {
+        border-color: $primary;
         outline: none;
+      }
+    }
 
-        &::placeholder {
-          color: rgba($secondary-beige, 0.6);
-          font-weight: 300;
-        }
+    textarea {
+      resize: vertical;
+      min-height: 50px;
+    }
+
+    // Catégories - 3 colonnes, 2 lignes
+    .category-buttons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); // 3 colonnes égales
+      gap: 8px;
+      margin-top: 5px;
+
+      .cat-btn {
+        padding: 8px 12px;
+        border: 2px solid #ddd;
+        border-radius: 20px;
+        background: transparent;
+        cursor: pointer;
+        font-size: 13px;
+        transition: 0.3s;
+        text-align: center;
+        white-space: nowrap;
 
         &:hover {
-          border-color: $secondary-beige;
+          border-color: $primary;
+          background: rgba($primary, 0.1);
         }
 
-        &:focus {
-          border-color: $accent-brown;
-          box-shadow: 0 0 0 3px rgba($accent-brown, 0.15);
-          transform: translateY(-1px);
-        }
-
-        &[type="number"] {
-          -moz-appearance: textfield;
-          
-          &::-webkit-outer-spin-button,
-          &::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-          }
-          
-          appearance: textfield;
+        &.active {
+          background: $primary;
+          color: $white;
+          border-color: $primary;
         }
       }
     }
 
-    // BOUTONS (Ajouter + Annuler)
-    .form-actions {
-      display: flex;
-      gap: 1rem;
-      margin-top: 0.5rem;
+    // Image - Type File
+    .file-input {
+      padding: 8px;
+      cursor: pointer;
+    }
 
-      .submit-btn {
-        flex: 1;
-        padding: 0.9rem;
-        font-family: 'Montserrat', 'Avenir', sans-serif;
-        font-weight: 600;
-        font-size: 1rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        color: $text-light;
-        background: linear-gradient(135deg, $primary-green 0%, $primary-dark 100%);
-        border: none;
+    .image-preview {
+      position: relative;
+      margin-top: 10px;
+      display: inline-block;
+
+      img {
+        width: 80px;
+        height: 80px;
         border-radius: 8px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-
-        &:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 6px 16px rgba($primary-green, 0.35);
-        }
-
-        &:active {
-          transform: translateY(0);
-        }
+        object-fit: cover;
+        border: 2px solid #ddd;
       }
 
-      .cancel-btn {
-        flex: 0.4;
-        padding: 0.9rem;
-        font-family: 'Montserrat', 'Avenir', sans-serif;
-        font-weight: 600;
-        font-size: 1rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        color: $primary-dark;
-        background: rgba($secondary-beige, 0.3);
-        border: 2px solid rgba($secondary-beige, 0.5);
-        border-radius: 8px;
+      .remove-image {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: $error;
+        color: $white;
+        border: none;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
         cursor: pointer;
-        transition: all 0.3s ease;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         &:hover {
-          background: rgba($secondary-beige, 0.5);
+          background: darken($error, 10%);
         }
+      }
+    }
+
+    // Erreurs
+    &.error {
+      input, textarea {
+        border-color: $error;
+        background: rgba($error, 0.05);
+      }
+
+      .cat-btn {
+        border-color: $error;
+      }
+
+      .cat-btn.active {
+        background: $error;
+        border-color: $error;
+      }
+    }
+
+    .error {
+      display: block;
+      color: $error;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+  }
+
+  // Boutons
+  .form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+
+    .btn-submit {
+      flex: 1;
+      padding: 12px;
+      background: $primary;
+      color: $white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+
+      &:hover:not(:disabled) {
+        background: darken($primary, 10%);
+      }
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    }
+
+    .btn-cancel {
+      flex: 0.5;
+      padding: 12px;
+      background: #eee;
+      color: $text;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+
+      &:hover {
+        background: #ddd;
+      }
+    }
+  }
+}
+
+// Mode sombre
+.dark .ajout-produit-container {
+  background: #2a2a2a;
+
+  h2 {
+    color: $white;
+  }
+
+  .form-group {
+    label {
+      color: #ccc;
+    }
+
+    input, textarea {
+      background: #3a3a3a;
+      border-color: #555;
+      color: $white;
+
+      &:focus {
+        border-color: $secondary;
+      }
+
+      &::placeholder {
+        color: #777;
+      }
+    }
+
+    .category-buttons {
+      .cat-btn {
+        color: #ccc;
+        border-color: #555;
+
+        &:hover {
+          border-color: $secondary;
+        }
+
+        &.active {
+          background: $secondary;
+          color: $text;
+          border-color: $secondary;
+        }
+      }
+    }
+
+    .image-preview {
+      img {
+        border-color: #555;
+      }
+    }
+
+    &.error {
+      input, textarea {
+        border-color: $error;
+        background: rgba($error, 0.15);
+      }
+    }
+
+    .error {
+      color: lighten($error, 20%);
+    }
+  }
+
+  .form-actions {
+    .btn-submit {
+      background: $secondary;
+      color: $text;
+
+      &:hover {
+        background: darken($secondary, 15%);
+      }
+    }
+
+    .btn-cancel {
+      background: #444;
+      color: #ccc;
+
+      &:hover {
+        background: #555;
       }
     }
   }
 }
 
 // Responsive
-@media (max-width: 768px) {
-  .ajout-produit-container {
-    padding: 1.5rem;
-    width: 95%;
-
-    h2 {
-      font-size: 1.3rem;
-    }
-
-    .ajout-form {
-      .form-group {
-        input {
-          font-size: 0.95rem;
-          padding: 0.6rem 0.8rem;
-        }
-      }
-    }
-  }
-}
-
 @media (max-width: 480px) {
   .ajout-produit-container {
-    padding: 1rem;
+    padding: 20px;
 
-    h2 {
-      font-size: 1.1rem;
+    .form-group {
+      .category-buttons {
+        grid-template-columns: repeat(2, 1fr); // 2 colonnes sur mobile
+      }
     }
 
-    .ajout-form {
-      .form-actions {
-        flex-direction: column;
+    .form-actions {
+      flex-direction: column;
 
-        .submit-btn,
-        .cancel-btn {
-          font-size: 0.9rem;
-          padding: 0.7rem;
-        }
+      .btn-cancel {
+        flex: 1;
       }
     }
   }

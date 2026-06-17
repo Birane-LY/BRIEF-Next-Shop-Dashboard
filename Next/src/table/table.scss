@@ -317,3 +317,132 @@
     }
   }
 }
+
+// Pagination
+.pagination {
+  border-top: 1px solid $border-light;
+  background: $background-card;
+  
+  .MuiTablePagination-toolbar {
+    min-height: 52px;
+  }
+
+  .MuiTablePagination-selectLabel,
+  .MuiTablePagination-displayedRows {
+    color: $text-secondary;
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .MuiTablePagination-select {
+    color: $text-primary;
+    font-weight: 500;
+  }
+
+  .MuiTablePagination-actions {
+    button {
+      color: $text-secondary;
+      transition: $transition;
+
+      &:hover {
+        color: $primary;
+        background: rgba($primary, 0.05);
+        border-radius: 4px;
+      }
+
+      &.Mui-disabled {
+        color: rgba($text-secondary, 0.3);
+      }
+    }
+  }
+}
+
+// Mode sombre
+.dark .pagination {
+  border-top-color: rgba($border-color, 0.1);
+  background: rgba($background-card, 0.02);
+
+  .MuiTablePagination-selectLabel,
+  .MuiTablePagination-displayedRows {
+    color: rgba($text-light, 0.6);
+  }
+
+  .MuiTablePagination-select {
+    color: $text-light;
+
+    .MuiSelect-icon {
+      color: rgba($text-light, 0.5);
+    }
+  }
+
+  .MuiTablePagination-actions {
+    button {
+      color: rgba($text-light, 0.5);
+
+      &:hover {
+        color: $primary-light;
+        background: rgba($primary-light, 0.08);
+      }
+
+      &.Mui-disabled {
+        color: rgba($text-light, 0.2);
+      }
+    }
+  }
+
+  .MuiTablePagination-select-root {
+    color: $text-light;
+  }
+
+  .MuiInputBase-root {
+    color: $text-light;
+  }
+}
+
+// Empty state
+.empty-state {
+  text-align: center !important;
+  padding: 40px !important;
+
+  .empty-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    span {
+      font-size: 48px;
+    }
+
+    p {
+      color: $text-secondary;
+      font-size: 16px;
+      font-weight: 500;
+      margin: 0;
+    }
+  }
+}
+
+.dark .empty-state {
+  .empty-message {
+    p {
+      color: rgba($text-light, 0.5);
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .pagination {
+    .MuiTablePagination-toolbar {
+      flex-wrap: wrap;
+      padding: 8px 16px;
+      min-height: 80px;
+    }
+
+    .MuiTablePagination-selectLabel,
+    .MuiTablePagination-displayedRows {
+      font-size: 12px;
+    }
+  }
+}

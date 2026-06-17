@@ -10,28 +10,84 @@
   background: $background-light;
   transition: $transition;
 
-  .listContainer {
-    padding: 20px;
-    margin: 0 20px 20px 20px;
-    background: $background-card;
-    border-radius: $border-radius;
-    box-shadow: $shadow;
-    transition: $transition;
+  // Sections
+  .home-section {
+    margin-bottom: 20px;
+    padding: 0 20px;
 
-    &:hover {
-      box-shadow: $shadow-hover;
+    &:last-child {
+      margin-bottom: 0;
     }
 
-    .listTitle {
-      font-weight: 600;
-      color: $text-secondary;
-      margin-bottom: 20px;
-      font-size: 16px;
-      letter-spacing: 0.5px;
-      border-bottom: 2px solid $border-light;
-      padding-bottom: 12px;
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      gap: 8px;
+
+      .section-title {
+        font-weight: 700;
+        font-size: 18px;
+        color: $text-primary;
+        margin: 0;
+        transition: $transition;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .section-badge {
+        display: inline-block;
+        padding: 2px 12px;
+        background: rgba($primary, 0.1);
+        color: $primary;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .section-subtitle {
+        color: $text-secondary;
+        font-size: 13px;
+        font-weight: 400;
+      }
+    }
+
+    .table-wrapper {
+      background: $background-card;
+      border-radius: $border-radius;
+      box-shadow: $shadow;
+      overflow: hidden;
       transition: $transition;
+
+      &:hover {
+        box-shadow: $shadow-hover;
+      }
+
+      // Surcharge pour le tableau
+      .table {
+        margin-top: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+
+        .MuiTablePagination-root {
+          border-top: 1px solid $border-light;
+        }
+      }
     }
+  }
+
+  // Supprimer les marges des KPI et Charts
+  .kpiCards {
+    padding: 0 !important;
+    margin-bottom: 5px !important;
+  }
+
+  .chartsContainer {
+    padding: 0 !important;
+    margin-bottom: 5px !important;
   }
 }
 
@@ -39,13 +95,80 @@
 .dark .home {
   background: $background-dark !important;
 
-  .listContainer {
-    background: rgba($background-card, 0.03) !important;
-    box-shadow: $shadow-dark !important;
+  .home-section {
+    .section-header {
+      .section-title {
+        color: $text-light;
+      }
 
-    .listTitle {
-      color: rgba($text-light, 0.6) !important;
-      border-bottom-color: rgba($border-color, 0.1) !important;
+      .section-badge {
+        background: rgba($primary-light, 0.15);
+        color: $primary-light;
+      }
+
+      .section-subtitle {
+        color: rgba($text-light, 0.5);
+      }
+    }
+
+    .table-wrapper {
+      background: rgba($background-card, 0.03);
+      box-shadow: $shadow-dark;
+
+      &:hover {
+        box-shadow: $shadow-dark;
+      }
+
+      .table {
+        .MuiTablePagination-root {
+          border-top-color: rgba($border-color, 0.08);
+        }
+      }
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .home {
+    .home-section {
+      padding: 0 12px;
+      margin-bottom: 15px;
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+        margin-bottom: 10px;
+
+        .section-title {
+          font-size: 16px;
+        }
+
+        .section-subtitle {
+          font-size: 12px;
+        }
+      }
+
+      .table-wrapper {
+        border-radius: $border-radius;
+        overflow-x: auto;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .home {
+    .home-section {
+      padding: 0 10px;
+      margin-bottom: 12px;
+
+      .section-header {
+        .section-title {
+          font-size: 15px;
+        }
+      }
     }
   }
 }
