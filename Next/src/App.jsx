@@ -1,21 +1,23 @@
 import "./style/dark.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useContext } from 'react';
+import { useContext } from "react";
 import Home from "./pages/home/Home";
-import List from "./pages/list/List";
-import { DarkModeContextProvider } from './context/darkModeContext';
-import { DarkModeContext } from './context/darkModeContext';
+import Products from "./pages/products/Products"; 
+import ProductDetail from "./pages/productDetail/ProductDetail"; 
+import {
+  DarkModeContextProvider,
+  DarkModeContext,
+} from "./context/darkModeContext";
 
 function AppContent() {
-  // Ce composant est à l'INTÉRIEUR du Provider
   const { darkMode } = useContext(DarkModeContext);
-  
   return (
     <div className={darkMode ? "app dark" : "app"}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home/>}/>
-          <Route path="liste/" element={<List/>}/>
+          <Route path="/" element={<Home />} />
+          <Route path="/produits" element={<Products />} />
+          <Route path="/produits/:id" element={<ProductDetail />} />
         </Routes>
       </BrowserRouter>
     </div>

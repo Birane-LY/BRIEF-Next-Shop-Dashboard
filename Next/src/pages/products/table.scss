@@ -1,4 +1,3 @@
-// src/table/table.scss
 @import '../style/variables';
 
 .table {
@@ -118,35 +117,40 @@
     text-transform: capitalize;
 
     // Status pour les transactions
-    &.approved {
+    &.approuvé,
+    &.approuve {
       background-color: rgba($success, 0.12);
       color: $success;
     }
 
-    &.pending {
+    &.enattente {
       background-color: rgba($warning, 0.12);
       color: $warning;
     }
 
-    &.cancelled {
+    &.annulé,
+    &.annule {
       background-color: rgba($error, 0.12);
       color: $error;
     }
 
-    &.stock-high {
-      background-color: rgba($success, 0.12);
-      color: $success;
-    }
+    // Status pour les stocks
+    &.stock {
+      &.high {
+        background-color: rgba($success, 0.12);
+        color: $success;
+      }
 
-    &.stock-medium {
-      background-color: rgba($warning, 0.12);
-      color: $warning;
-    }
+      &.medium {
+        background-color: rgba($warning, 0.12);
+        color: $warning;
+      }
 
-    &.stock-low {
-      background-color: rgba($error, 0.12);
-      color: $error;
-      animation: pulseLow 2s infinite;
+      &.low {
+        background-color: rgba($error, 0.12);
+        color: $error;
+        animation: pulseLow 2s infinite;
+      }
     }
   }
 
@@ -243,29 +247,32 @@
   }
 
   .status {
-    &.approved {
+    &.approuvé,
+    &.approuve {
       background-color: rgba($success, 0.2);
       color: lighten($success, 20%);
     }
 
-    &.pending {
+    &.enattente {
       background-color: rgba($warning, 0.2);
       color: lighten($warning, 20%);
     }
 
-    &.stock-high {
-      background-color: rgba($success, 0.2);
-      color: lighten($success, 20%);
-    }
+    &.stock {
+      &.high {
+        background-color: rgba($success, 0.2);
+        color: lighten($success, 20%);
+      }
 
-    &.stock-medium {
-      background-color: rgba($warning, 0.2);
-      color: lighten($warning, 20%);
-    }
+      &.medium {
+        background-color: rgba($warning, 0.2);
+        color: lighten($warning, 20%);
+      }
 
-    &.stock-low {
-      background-color: rgba($error, 0.2);
-      color: lighten($error, 20%);
+      &.low {
+        background-color: rgba($error, 0.2);
+        color: lighten($error, 20%);
+      }
     }
   }
 

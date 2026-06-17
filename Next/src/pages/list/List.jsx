@@ -1,16 +1,16 @@
-import './list.scss';
-import Sidebar from '../../components/Sidebar/Sidebar'
-import Navbar from '../../components/NavBar/NavBar'
+// import './list.scss';
+// import Sidebar from '../../components/Sidebar/Sidebar'
+// import Navbar from '../../components/NavBar/NavBar'
 
-const List = () => {
-  return (
-    <div className="list">
-      <Sidebar />
-    <div className="listContainer">
-      <Navbar/>
-    </div>
-    </div>
-  )
-}
+// const List = () => {
+//   return (
+//     <div className="list">
+//       <Sidebar />
+//     <div className="listContainer">
+//       <Navbar/>
+//     </div>
+//     </div>
+//   )
+// }
 
-export default List
+// export default List

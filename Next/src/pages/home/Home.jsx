@@ -1,28 +1,20 @@
-import React from 'react'
-import Sidebar from "../../components/Sidebar/Sidebar";
-import NavBar from "../../components/NavBar/NavBar";
-import Table from "../../table/Table";
-import Products from '../../table/Products';
-
-import "./home.scss"
+// src/pages/home/Home.jsx
+import Layout from "../../components/Layout/Layout"; // ← remonte de 2 dossiers (pages/home → src)
+import Table from "../../table/Table"; // ← idem
+import Products from "../../table/ProductTable"; // ← idem
+import "./home.scss";
 
 const Home = () => {
   return (
-    <div className="home">
-    <Sidebar />
-    <div className="homeContainer">
-      <NavBar/>
+    <Layout>
       <div className="listContainer">
-     <div className="listTitle">Dernières transactions</div>
-     <Table />
+        <div className="listTitle">Dernières transactions</div>
+        <Table />
       </div>
-       <div className="listTitle">Stocks actuels</div>
-         <Products />
-      </div>
-    </div>
-    
- 
-  )
-}
+      <div className="listTitle">Stocks actuels</div>
+      <Products />
+    </Layout>
+  );
+};
 
-export default Home
+export default Home;

@@ -1,0 +1,439 @@
+// src/pages/productDetail/productDetail.scss
+@import '../../style/variables';
+
+.productDetail {
+  padding: 20px;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 15px;
+
+    h2 {
+      color: $primary;
+      font-weight: 700;
+      font-size: 24px;
+      margin: 0;
+    }
+
+    .backButton {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: transparent;
+      border: 1px solid $border-color;
+      border-radius: $border-radius;
+      color: $text-secondary;
+      font-weight: 500;
+      font-size: 14px;
+      cursor: pointer;
+      transition: $transition;
+
+      .backIcon {
+        font-size: 20px;
+        transition: $transition;
+      }
+
+      &:hover {
+        background: rgba($primary, 0.05);
+        border-color: $primary;
+        color: $primary;
+        transform: translateX(-4px);
+
+        .backIcon {
+          transform: translateX(-2px);
+        }
+      }
+    }
+  }
+
+  .detailCard {
+    background: $background-card;
+    border-radius: $border-radius;
+    box-shadow: $shadow;
+    transition: $transition;
+    border: 1px solid $border-light;
+    overflow: hidden;
+
+    &:hover {
+      box-shadow: $shadow-hover;
+    }
+
+    .detailHeader {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      padding: 30px;
+      background: rgba($primary, 0.03);
+      border-bottom: 1px solid $border-light;
+
+      .productImageContainer {
+        flex-shrink: 0;
+
+        .detailProductImage {
+          width: 150px;
+          height: 150px;
+          border-radius: $border-radius;
+          object-fit: cover;
+          border: 2px solid $border-light;
+          transition: $transition;
+
+          &:hover {
+            transform: scale(1.05);
+            border-color: $primary;
+          }
+        }
+      }
+
+      .productTitle {
+        flex: 1;
+
+        h1 {
+          font-size: 28px;
+          font-weight: 700;
+          color: $text-primary;
+          margin: 0 0 10px 0;
+        }
+
+        .stockStatus {
+          display: inline-block;
+          padding: 6px 16px;
+          border-radius: 20px;
+          font-size: 14px;
+          font-weight: 600;
+
+          &.high {
+            background: rgba($success, 0.12);
+            color: $success;
+          }
+
+          &.medium {
+            background: rgba($warning, 0.12);
+            color: $warning;
+          }
+
+          &.low {
+            background: rgba($error, 0.12);
+            color: $error;
+          }
+
+          &.critical {
+            background: rgba($error, 0.2);
+            color: $error;
+            animation: pulseCritical 1.5s infinite;
+          }
+        }
+      }
+    }
+
+    .detailContent {
+      padding: 30px;
+
+      .detailItem {
+        display: flex;
+        padding: 14px 0;
+        border-bottom: 1px solid $border-light;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .label {
+          font-weight: 600;
+          width: 160px;
+          color: $text-secondary;
+          font-size: 14px;
+          letter-spacing: 0.3px;
+          flex-shrink: 0;
+        }
+
+        .value {
+          color: $text-primary;
+          flex: 1;
+          font-size: 15px;
+          font-weight: 500;
+
+          &.priceValue {
+            font-size: 18px;
+            font-weight: 700;
+            color: $primary;
+          }
+
+          &.description {
+            line-height: 1.6;
+            color: $text-secondary;
+          }
+        }
+      }
+    }
+
+    .detailActions {
+      display: flex;
+      gap: 12px;
+      padding: 20px 30px;
+      background: rgba($background-light, 0.3);
+      border-top: 1px solid $border-light;
+
+      .editButton {
+        padding: 10px 24px;
+        background: $primary;
+        color: white;
+        border: none;
+        border-radius: $border-radius;
+        font-weight: 500;
+        cursor: pointer;
+        transition: $transition;
+
+        &:hover {
+          background: darken($primary, 5%);
+          transform: translateY(-2px);
+          box-shadow: $shadow;
+        }
+      }
+
+      .deleteButton {
+        padding: 10px 24px;
+        background: transparent;
+        color: $error;
+        border: 1px solid $error;
+        border-radius: $border-radius;
+        font-weight: 500;
+        cursor: pointer;
+        transition: $transition;
+
+        &:hover {
+          background: rgba($error, 0.08);
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+
+  .notFound {
+    text-align: center;
+    padding: 60px 20px;
+
+    h2 {
+      color: $text-secondary;
+      margin-bottom: 20px;
+    }
+
+    .backButton {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: $primary;
+      color: white;
+      border: none;
+      border-radius: $border-radius;
+      font-weight: 500;
+      cursor: pointer;
+      transition: $transition;
+
+      &:hover {
+        background: darken($primary, 5%);
+        transform: translateX(-4px);
+        box-shadow: $shadow;
+      }
+    }
+  }
+}
+
+// Animation pour stock critique
+@keyframes pulseCritical {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.02);
+  }
+}
+
+// Mode sombre
+.dark .productDetail {
+  .header {
+    h2 {
+      color: $primary-light;
+    }
+
+    .backButton {
+      border-color: rgba($border-color, 0.2);
+      color: rgba($text-light, 0.6);
+
+      &:hover {
+        background: rgba($primary-light, 0.08);
+        border-color: $primary-light;
+        color: $primary-light;
+      }
+    }
+  }
+
+  .detailCard {
+    background: rgba($background-card, 0.03);
+    border-color: rgba($border-color, 0.1);
+    box-shadow: $shadow-dark;
+
+    .detailHeader {
+      background: rgba($primary-light, 0.04);
+      border-bottom-color: rgba($border-color, 0.08);
+
+      .productImageContainer {
+        .detailProductImage {
+          border-color: rgba($border-color, 0.2);
+        }
+      }
+
+      .productTitle {
+        h1 {
+          color: $text-light;
+        }
+
+        .stockStatus {
+          &.high {
+            background: rgba($success, 0.2);
+            color: lighten($success, 20%);
+          }
+
+          &.medium {
+            background: rgba($warning, 0.2);
+            color: lighten($warning, 20%);
+          }
+
+          &.low {
+            background: rgba($error, 0.2);
+            color: lighten($error, 20%);
+          }
+
+          &.critical {
+            background: rgba($error, 0.25);
+            color: lighten($error, 20%);
+          }
+        }
+      }
+    }
+
+    .detailContent {
+      .detailItem {
+        border-bottom-color: rgba($border-color, 0.08);
+
+        .label {
+          color: rgba($text-light, 0.5);
+        }
+
+        .value {
+          color: $text-light;
+
+          &.priceValue {
+            color: $primary-light;
+          }
+
+          &.description {
+            color: rgba($text-light, 0.7);
+          }
+        }
+      }
+    }
+
+    .detailActions {
+      background: rgba($background-light, 0.02);
+      border-top-color: rgba($border-color, 0.08);
+
+      .editButton {
+        background: $primary-light;
+
+        &:hover {
+          background: darken($primary-light, 10%);
+        }
+      }
+    }
+  }
+
+  .notFound {
+    h2 {
+      color: rgba($text-light, 0.5);
+    }
+
+    .backButton {
+      background: $primary-light;
+
+      &:hover {
+        background: darken($primary-light, 10%);
+      }
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .productDetail {
+    .header {
+      flex-direction: column;
+      align-items: flex-start;
+
+      .backButton {
+        width: 100%;
+        justify-content: center;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+    }
+
+    .detailCard {
+      .detailHeader {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+
+        .productImageContainer {
+          .detailProductImage {
+            width: 120px;
+            height: 120px;
+          }
+        }
+
+        .productTitle {
+          h1 {
+            font-size: 22px;
+          }
+        }
+      }
+
+      .detailContent {
+        padding: 20px;
+
+        .detailItem {
+          flex-direction: column;
+          gap: 4px;
+
+          .label {
+            width: 100%;
+            font-size: 12px;
+          }
+
+          .value {
+            font-size: 14px;
+          }
+        }
+      }
+
+      .detailActions {
+        flex-direction: column;
+
+        .editButton,
+        .deleteButton {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}

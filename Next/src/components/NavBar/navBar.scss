@@ -1,74 +1,183 @@
-.navbar {
-    height: 50px;
-    border-bottom: 0.5px solid rgb(231, 228, 228 );
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-    color: #555;
+@import '../../style/variables';
 
-.wrapper {
+.navbar {
+  height: 60px;
+  border-bottom: 0.5px solid $border-color;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: $text-primary;
+  background: $background-light;
+  transition: $transition;
+
+  .wrapper {
     display: flex;
     align-items: center;
-    padding: 20px;
+    padding: 0 30px;
     justify-content: space-between;
     width: 100%;
 
-
     .search {
-        display: flex;
-        align-items: center;
-        border: 0.5px solid lightgray;
-        padding: 3px;
-       
+      display: flex;
+      align-items: center;
+      border: 1px solid $border-color;
+      padding: 6px 12px;
+      border-radius: 20px;
+      background: $background-card;
+      transition: $transition;
 
-        input {
-          border: none;
-          outline: none;
-          background: transparent;  
-          
-          &::placeholder {
-            font-size: 12px;
-          }
+      &:focus-within {
+        border-color: $primary;
+        box-shadow: 0 0 0 3px rgba($primary, 0.1);
+      }
+
+      input {
+        border: none;
+        outline: none;
+        background: transparent;
+        color: $text-primary;
+        padding: 4px 8px;
+        width: 200px;
+
+        &::placeholder {
+          font-size: 13px;
+          color: $text-secondary;
         }
+      }
+
+      svg {
+        color: $text-secondary;
+        font-size: 20px;
+      }
     }
 
+    .items {
+      display: flex;
+      align-items: center;
+      gap: 8px;
 
-   .items {
-    display: flex;
-    align-items: center;
-
-    .item {
+      .item {
         display: flex;
         align-items: center;
-        margin-right: 20px;
+        padding: 8px 12px;
+        border-radius: $border-radius;
+        cursor: pointer;
+        transition: $transition;
         position: relative;
 
+        &:hover {
+          background: rgba($primary, 0.05);
+        }
+
         .icon {
-            font-size: 20px;
-            }
+          font-size: 22px;
+          color: $text-secondary;
+          transition: $transition;
+
+          &:hover {
+            color: $primary;
+          }
+        }
 
         .avatar {
-                width: 30px;
-                height: 30px;
-                border-radius: 50%;
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          object-fit: cover;
+          border: 2px solid $border-color;
+          transition: $transition;
+
+          &:hover {
+            border-color: $primary;
+            transform: scale(1.05);
+          }
         }
 
         .counter {
-            width: 15px;
-            height: 15px;
-            background: red;
-            border-radius: 50%;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            font-weight: bold;
-            position: absolute;
-            top: -5px;
-            right: -5px;
+          width: 18px;
+          height: 18px;
+          background: $error;
+          border-radius: 50%;
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 10px;
+          font-weight: 700;
+          position: absolute;
+          top: 2px;
+          right: 2px;
+          border: 2px solid $background-light;
         }
+
+        span {
+          margin-left: 6px;
+          font-weight: 500;
+          color: $text-secondary;
+          font-size: 13px;
+        }
+      }
     }
-   }
+  }
 }
+
+// Mode sombre
+.dark .navbar {
+  background: $background-dark;
+  border-bottom-color: rgba($border-color, 0.1);
+
+  .wrapper {
+    .search {
+      border-color: rgba($border-color, 0.2);
+      background: rgba($background-card, 0.05);
+
+      input {
+        color: $text-light;
+
+        &::placeholder {
+          color: rgba($text-light, 0.5);
+        }
+      }
+
+      svg {
+        color: rgba($text-light, 0.5);
+      }
+
+      &:focus-within {
+        border-color: $accent;
+        box-shadow: 0 0 0 3px rgba($accent, 0.1);
+      }
+    }
+
+    .items {
+      .item {
+        &:hover {
+          background: rgba($primary-light, 0.08);
+        }
+
+        .icon {
+          color: rgba($text-light, 0.7);
+
+          &:hover {
+            color: $primary-light;
+          }
+        }
+
+        .avatar {
+          border-color: rgba($border-color, 0.2);
+          &:hover {
+            border-color: $primary-light;
+          }
+        }
+
+        .counter {
+          border-color: $background-dark;
+        }
+
+        span {
+          color: rgba($text-light, 0.6);
+        }
+      }
+    }
+  }
 }

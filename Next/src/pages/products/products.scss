@@ -1,0 +1,37 @@
+// src/pages/products/products.scss
+.productsPage {
+  padding: 20px;
+
+  .productsHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+
+    .pageTitle {
+      color: #646149;
+      font-weight: 700;
+      font-size: 24px;
+      margin: 0;
+    }
+
+    .addButton {
+      padding: 10px 24px;
+      background: #646149;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: #4a4836;
+        transform: translateY(-2px);
+        box-shadow: 0 2px 8px rgba(74, 72, 54, 0.2);
+      }
+    }
+  }
+}

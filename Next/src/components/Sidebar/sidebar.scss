@@ -1,87 +1,332 @@
+@import '../../style/variables';
+
 .sidebar {
-    flex: 1;
-    border-right: 0.5px solid rgb(222, 219, 219);
-    min-height: 100vh;
-.top {
+  width: 220px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-right: 0.5px solid $border-color;
+  background: $background-light;
+  transition: $transition;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  overflow-y: auto;
+
+  .top {
     height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    
+    background: $primary;
+    border-bottom: 2px solid $accent;
+    flex-shrink: 0;
 
     .logo {
-        font-size: 20px;
-        font-weight: bold;
-        color:#646149;
-        text-decoration: none;
+      font-size: 22px;
+      font-weight: 700;
+      color: $text-light;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: $transition;
+
+      &:hover {
+        color: $accent;
+        transform: scale(1.02);
+      }
     }
-}
-hr {
+  }
+
+  hr {
     height: 0;
-    border: 0.5px solid rgb(222, 219, 219);
-}
+    border: 0.5px solid $border-color;
+    opacity: 0.5;
+    flex-shrink: 0;
+  }
 
-.center {
-    padding-left: 10px;
+  .center {
+    flex: 1;
+    padding: 10px 15px;
+    overflow-y: auto;
 
-    ul{
-        list-style: none;
-        padding: 0;
-        margin: 0;
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
 
-        .title {
-            font-size: 10px;
-            font-weight: bold;
-            color: #999;
-            text-align: left;
-            margin-top: 15px;
-            margin-bottom: 5px;
+      .title {
+        font-size: 11px;
+        font-weight: 700;
+        color: $text-secondary;
+        text-align: left;
+        margin-top: 20px;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      li {
+        display: flex;
+        align-items: center;
+        padding: 10px 12px;
+        cursor: pointer;
+        border-radius: $border-radius;
+        transition: $transition;
+        margin-bottom: 2px;
+
+        &:hover {
+          background-color: rgba($primary, 0.08);
+          transform: translateX(4px);
         }
 
-        li {
-            display: flex;
-            align-items: center;
-            padding: 5px;
-            cursor: pointer;
-
-
-            &:hover {
-                background-color: rgb(213, 238, 241);;
-            }
+        &.active {
+          background-color: rgba($primary, 0.12);
+          border-left: 3px solid $primary;
         }
+      }
+
+      .icon {
+        font-size: 22px;
+        color: $primary;
+        transition: $transition;
+
+        li:hover & {
+          color: $accent;
+          transform: scale(1.1);
+        }
+      }
+
+      span {
+        font-size: 14px;
+        font-weight: 500;
+        color: $text-primary;
+        margin-left: 12px;
+        transition: $transition;
+
+        li:hover & {
+          color: $primary;
+        }
+      }
+    }
+  }
+
+  // BOTTOM - Tout en bas du Sidebar
+  .bottom {
+    flex-shrink: 0;
+    padding: 15px 15px 20px 15px;
+    border-top: 1px solid $border-color;
+    background: $background-light;
+
+    .colorOptions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 12px;
+
+      .colorOption {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 2px solid $border-color;
+        cursor: pointer;
+        transition: $transition;
+
+        &:hover {
+          transform: scale(1.15);
+          border-color: $primary;
+        }
+
+        &:nth-child(1) {
+          background-color: $background-light;
+          border-color: $text-secondary;
+
+          &:hover {
+            border-color: $primary;
+          }
+        }
+
+        &:nth-child(2) {
+          background-color: $background-dark;
+          border-color: $text-secondary;
+
+          &:hover {
+            border-color: $accent;
+          }
+        }
+      }
+    }
+
+    .logoutItem {
+      display: flex;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: $border-radius;
+      cursor: pointer;
+      transition: $transition;
+      color: $text-secondary;
+
+      &:hover {
+        background-color: rgba($error, 0.08);
+        color: $error;
 
         .icon {
-            font-size: 18px;
-            color: #646149;
+          color: $error;
         }
 
         span {
-            font-size: 15px;
-            font-weight: 600;
-            color: #c8b89a;
-            margin-left: 10px;
+          color: $error;
         }
-    }
-}
-.bottom {
-    display: flex;
-    align-items: center;
-    margin: 10px;
+      }
 
-    .colorOption {
-        width: 20px;
-        height: 20px;
-        border-radius: 5px;
-        border: 1px solid #999;
-        cursor: pointer;
-        margin: 5px;
+      .icon {
+        font-size: 20px;
+        color: $text-secondary;
+        transition: $transition;
+        margin-right: 12px;
+      }
+
+      span {
+        font-size: 14px;
+        font-weight: 500;
+        transition: $transition;
+      }
+    }
+  }
+}
+
+// Mode sombre
+.dark .sidebar {
+  background: $background-dark;
+  border-right-color: rgba($border-color, 0.1);
+
+  .top {
+    background: darken($primary, 5%);
+    border-bottom-color: $accent;
+  }
+
+  hr {
+    border-color: rgba($border-color, 0.1);
+  }
+
+  .center {
+    ul {
+      .title {
+        color: rgba($text-light, 0.5);
+      }
+
+      li {
+        &:hover {
+          background-color: rgba($primary-light, 0.1);
+        }
+
+        &.active {
+          background-color: rgba($primary-light, 0.15);
+          border-left-color: $accent;
+        }
+      }
+
+      .icon {
+        color: $primary-light;
+
+        li:hover & {
+          color: $accent;
+        }
+      }
+
+      span {
+        color: $text-light;
+
+        li:hover & {
+          color: $primary-light;
+        }
+      }
+    }
+  }
+
+  .bottom {
+    border-top-color: rgba($border-color, 0.1);
+    background: $background-dark;
+
+    .colorOptions {
+      .colorOption {
+        border-color: rgba($text-secondary, 0.3);
 
         &:nth-child(1) {
-            background-color: whitesmoke;
+          background-color: $background-light;
         }
+
         &:nth-child(2) {
-            background-color: #333;
+          background-color: $background-dark;
         }
+      }
     }
+
+    .logoutItem {
+      color: rgba($text-light, 0.5);
+
+      &:hover {
+        background-color: rgba($error, 0.15);
+        color: lighten($error, 20%);
+
+        .icon {
+          color: lighten($error, 20%);
+        }
+
+        span {
+          color: lighten($error, 20%);
+        }
+      }
+
+      .icon {
+        color: rgba($text-light, 0.4);
+      }
+
+      span {
+        color: rgba($text-light, 0.5);
+      }
+    }
+  }
 }
+
+// Responsive - Masquer le sidebar sur mobile
+@media (max-width: 768px) {
+  .sidebar {
+    width: 60px;
+
+    .top .logo {
+      font-size: 14px;
+    }
+
+    .center {
+      ul {
+        .title {
+          display: none;
+        }
+
+        li {
+          padding: 12px;
+          justify-content: center;
+
+          span {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .bottom {
+      .colorOptions {
+        justify-content: center;
+      }
+
+      .logoutItem {
+        justify-content: center;
+
+        span {
+          display: none;
+        }
+      }
+    }
+  }
 }
