@@ -4,6 +4,7 @@ import { useContext } from "react";
 import Home from "./pages/home/Home";
 import Products from "./pages/products/Products"; 
 import ProductDetail from "./pages/productDetail/ProductDetail"; 
+import { ProductProvider } from "./context/ProductContext";
 import {
   DarkModeContextProvider,
   DarkModeContext,
@@ -12,6 +13,7 @@ import {
 function AppContent() {
   const { darkMode } = useContext(DarkModeContext);
   return (
+     <ProductProvider>
     <div className={darkMode ? "app dark" : "app"}>
       <BrowserRouter>
         <Routes>
@@ -21,6 +23,7 @@ function AppContent() {
         </Routes>
       </BrowserRouter>
     </div>
+    </ProductProvider>
   );
 }
 

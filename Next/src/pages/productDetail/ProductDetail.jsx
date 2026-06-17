@@ -2,14 +2,15 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Layout from '../../components/Layout/Layout';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import './productDetail.scss';
-import { productsMock } from '../../table/productsMock'; 
+import { useProducts } from '../../context/ProductContext'; // Importez
 
 const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const product = productsMock.find((p) => p.id === Number(id));
+  const { produits } = useProducts(); // Utilisez le contexte
+  const product = produits.find((p) => p.id === Number(id)); // Maintenant avec les données dynamiques
 
-  // Déterminer le statut du stock
+//  Déterminer le statut du stock
   const getStockStatus = (stock) => {
     if (stock <= 3) return { class: 'critical', label: 'Stock critique' };
     if (stock <= 10) return { class: 'low', label: 'Stock faible' };
@@ -94,3 +95,6 @@ const ProductDetail = () => {
 };
 
 export default ProductDetail;
+
+
+

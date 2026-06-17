@@ -8,10 +8,11 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Link } from 'react-router-dom';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { productsMock } from './productsMock'; 
 
-const ProductTable = () => {
+const ProductTable = ({produits}) => {
+
   return (
+    <>
     <TableContainer component={Paper} className="table productsTable">
       <Table sx={{ minWidth: 650 }} aria-label="table des produits">
         <TableHead>
@@ -26,7 +27,7 @@ const ProductTable = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {productsMock.map((product) => {
+          {produits.map((product) => {
             let stockStatus = 'stock-high';
             let stockLabel = 'En stock';
             
@@ -39,6 +40,7 @@ const ProductTable = () => {
             }
 
             return (
+              
               <TableRow key={product.id}>
                 <TableCell className="tableCell">{product.id}</TableCell>
                 <TableCell className="tableCell">
@@ -76,6 +78,7 @@ const ProductTable = () => {
         </TableBody>
       </Table>
     </TableContainer>
+      </>
   );
 };
 

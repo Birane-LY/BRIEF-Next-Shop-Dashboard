@@ -1,7 +1,6 @@
-// src/pages/home/Home.jsx
-import Layout from "../../components/Layout/Layout"; // ← remonte de 2 dossiers (pages/home → src)
-import Table from "../../table/Table"; // ← idem
-import Products from "../../table/ProductTable"; // ← idem
+import Layout from "../../components/Layout/Layout"; 
+import Table from "../../table/Table"; 
+import Products from "../../table/ProductTable"; 
 import "./home.scss";
 
 const Home = () => {
