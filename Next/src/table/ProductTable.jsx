@@ -27,7 +27,7 @@ const ProductTable = ({produits}) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {produits.map((product) => {
+          {produits?.map((product) => {
             let stockStatus = 'stock-high';
             let stockLabel = 'En stock';
             

@@ -1,0 +1,81 @@
+@import '../../style/variables';
+
+.chartsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 20px;
+  padding: 0 20px 20px 20px;
+
+  .chartCard {
+    background: $background-card;
+    border-radius: $border-radius;
+    padding: 20px;
+    box-shadow: $shadow;
+    transition: $transition;
+    border: 1px solid $border-light;
+
+    &:hover {
+      box-shadow: $shadow-hover;
+    }
+
+    .chartTitle {
+      font-size: 16px;
+      font-weight: 600;
+      color: $text-secondary;
+      margin: 0 0 16px 0;
+      padding-bottom: 10px;
+      border-bottom: 2px solid $border-light;
+    }
+
+    &.pieChart {
+      grid-column: span 1;
+      display: flex;
+      flex-direction: column;
+      align-items: right;
+    }
+  }
+}
+
+// Mode sombre
+.dark .chartsContainer {
+  .chartCard {
+    background: rgba($background-card, 0.03);
+    border-color: rgba($border-color, 0.1);
+    box-shadow: $shadow-dark;
+
+    .chartTitle {
+      color: rgba($text-light, 0.6);
+      border-bottom-color: rgba($border-color, 0.1);
+    }
+
+    // Recharts en mode sombre
+    .recharts-cartesian-grid-line {
+      stroke: rgba($border-color, 0.1) !important;
+    }
+
+    .recharts-text {
+      fill: rgba($text-light, 0.6) !important;
+    }
+
+    .recharts-tooltip-wrapper {
+      .recharts-tooltip-item {
+        color: $text-light !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .chartsContainer {
+    grid-template-columns: 1fr;
+    padding: 0 12px 12px 12px;
+
+    .chartCard {
+      padding: 15px;
+
+      .chartTitle {
+        font-size: 14px;
+      }
+    }
+  }
+}

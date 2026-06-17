@@ -1,0 +1,140 @@
+@import '../../style/variables';
+
+.kpiCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+
+  .kpiCard {
+    background: $background-card;
+    border-radius: $border-radius;
+    padding: 20px;
+    box-shadow: $shadow;
+    transition: $transition;
+    border: 1px solid $border-light;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: $shadow-hover;
+    }
+
+    .kpiHeader {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+
+      .kpiIconWrapper {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .kpiIcon {
+          font-size: 22px;
+          color: $primary;
+        }
+      }
+
+      .kpiTrend {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 4px 10px;
+        border-radius: 12px;
+
+        &.up {
+          color: $success;
+          background: rgba($success, 0.1);
+        }
+
+        &.down {
+          color: $error;
+          background: rgba($error, 0.1);
+        }
+
+        svg {
+          font-size: 16px;
+        }
+      }
+    }
+
+    .kpiBody {
+      .kpiValue {
+        font-size: 24px;
+        font-weight: 700;
+        color: $text-primary;
+        margin: 0 0 4px 0;
+      }
+
+      .kpiTitle {
+        font-size: 14px;
+        color: $text-secondary;
+        margin: 0;
+        font-weight: 500;
+      }
+
+      .kpiSubtitle {
+        font-size: 12px;
+        color: $text-secondary;
+        opacity: 0.7;
+        margin-top: 4px;
+        display: block;
+      }
+    }
+  }
+}
+
+// Mode sombre
+.dark .kpiCards {
+  .kpiCard {
+    background: rgba($background-card, 0.03);
+    border-color: rgba($border-color, 0.1);
+    box-shadow: $shadow-dark;
+
+    .kpiBody {
+      .kpiValue {
+        color: $text-light;
+      }
+
+      .kpiTitle {
+        color: rgba($text-light, 0.6);
+      }
+
+      .kpiSubtitle {
+        color: rgba($text-light, 0.4);
+      }
+    }
+
+    .kpiHeader {
+      .kpiIconWrapper {
+        .kpiIcon {
+          color: $primary-light;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .kpiCards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 12px;
+
+    .kpiCard {
+      padding: 15px;
+
+      .kpiBody {
+        .kpiValue {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
