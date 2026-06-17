@@ -7,172 +7,243 @@ $background-light: #F7F5F0;
 $text-light: #F7F5F0;
 $text-dark: #1E1E1C;
 
+// OVERLAY (fond sombre derrière la popup)
+.ajout-produit-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(30, 30, 28, 0.7); // Fond sombre semi-transparent
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; // Pour être au-dessus de tout
+  animation: fadeIn 0.3s ease; // Animation d'apparition
 
-.ajout-produit-container {
- max-width: 500px;
- margin: 2rem auto;
- padding: 2rem;
- background: $background-light;
- border-radius: 12px;
- box-shadow: 0 8px 24px rgba(30, 30, 28, 0.12);
- border: 1px solid rgba($secondary-beige, 0.3);
-
-
- h2 {
-   font-family: 'Montserrat', 'Avenir', sans-serif;
-   font-weight: 600;
-   font-size: 1.5rem;
-   color: $primary-dark;
-   margin-bottom: 1.5rem;
-   padding-bottom: 0.5rem;
-   border-bottom: 3px solid $accent-brown;
-   letter-spacing: 0.5px;
- }
-
-
- .ajout-form {
-   .form-group {
-     margin-bottom: 1.25rem;
-
-
-     label {
-       display: block;
-       font-family: 'Montserrat', 'Avenir', sans-serif;
-       font-weight: 500;
-       font-size: 0.85rem;
-       color: $primary-dark;
-       margin-bottom: 0.4rem;
-       text-transform: uppercase;
-       letter-spacing: 0.5px;
-     }
-
-
-     input {
-       width: 80%;
-       padding: 0.7rem 1rem;
-       font-family: 'Montserrat', 'Avenir', sans-serif;
-       font-size: 1rem;
-       border: 2px solid rgba($secondary-beige, 0.5);
-       border-radius: 8px;
-       background: white;
-       color: $text-dark;
-       transition: all 0.3s ease;
-       outline: none;
-
-
-       &::placeholder {
-         color: rgba($secondary-beige, 0.6);
-         font-weight: 300;
-       }
-
-
-       &:hover {
-         border-color: $secondary-beige;
-       }
-
-
-       &:focus {
-         border-color: $accent-brown;
-         box-shadow: 0 0 0 3px rgba($accent-brown, 0.15);
-         transform: translateY(-1px);
-       }
-
-
-       // Version corrigée pour les inputs number
-       &[type="number"] {
-         // Firefox
-         -moz-appearance: textfield;
-        
-         // Chrome, Safari, Edge
-         &::-webkit-outer-spin-button,
-         &::-webkit-inner-spin-button {
-           -webkit-appearance: none;
-           margin: 0;
-         }
-        
-         // Opera
-         &::-webkit-outer-spin-button,
-         &::-webkit-inner-spin-button {
-           -webkit-appearance: none;
-         }
-        
-         // Firefox (alternative)
-         appearance: textfield;
-       }
-     }
-   }
-
-
-   .submit-btn {
-     width: 100%;
-     padding: 0.9rem;
-     font-family: 'Montserrat', 'Avenir', sans-serif;
-     font-weight: 600;
-     font-size: 1rem;
-     text-transform: uppercase;
-     letter-spacing: 1px;
-     color: $text-light;
-     background: linear-gradient(135deg, $primary-green 0%, $primary-dark 100%);
-     border: none;
-     border-radius: 8px;
-     cursor: pointer;
-     transition: all 0.3s ease;
-     margin-top: 0.5rem;
-
-
-     &:hover {
-       transform: translateY(-2px);
-       box-shadow: 0 6px 16px rgba($primary-green, 0.35);
-     }
-
-
-     &:active {
-       transform: translateY(0);
-     }
-   }
- }
+  // Animation d'entrée
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 }
 
+// CONTAINER DE LA POPUP
+.ajout-produit-container {
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto; // Scroll si le contenu est trop grand
+  padding: 2rem;
+  background: $background-light;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(30, 30, 28, 0.3);
+  border: 1px solid rgba($secondary-beige, 0.3);
+  position: relative;
+  animation: slideUp 0.3s ease; // Animation de la popup
+
+  // Animation de la popup qui monte
+  @keyframes slideUp {
+    from {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  // BOUTON FERMER (X)
+  .close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: $primary-dark;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 300;
+
+    &:hover {
+      background: rgba($secondary-beige, 0.3);
+      transform: rotate(90deg);
+    }
+  }
+
+  h2 {
+    font-family: 'Montserrat', 'Avenir', sans-serif;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: $primary-dark;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid $accent-brown;
+    letter-spacing: 0.5px;
+    padding-right: 2.5rem; // Pour ne pas chevaucher le bouton X
+  }
+
+  .ajout-form {
+    .form-group {
+      margin-bottom: 1.25rem;
+
+      label {
+        display: block;
+        font-family: 'Montserrat', 'Avenir', sans-serif;
+        font-weight: 500;
+        font-size: 0.85rem;
+        color: $primary-dark;
+        margin-bottom: 0.4rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      input {
+        width: 100%; // Changé de 80% à 100%
+        padding: 0.7rem 1rem;
+        font-family: 'Montserrat', 'Avenir', sans-serif;
+        font-size: 1rem;
+        border: 2px solid rgba($secondary-beige, 0.5);
+        border-radius: 8px;
+        background: white;
+        color: $text-dark;
+        transition: all 0.3s ease;
+        outline: none;
+
+        &::placeholder {
+          color: rgba($secondary-beige, 0.6);
+          font-weight: 300;
+        }
+
+        &:hover {
+          border-color: $secondary-beige;
+        }
+
+        &:focus {
+          border-color: $accent-brown;
+          box-shadow: 0 0 0 3px rgba($accent-brown, 0.15);
+          transform: translateY(-1px);
+        }
+
+        &[type="number"] {
+          -moz-appearance: textfield;
+          
+          &::-webkit-outer-spin-button,
+          &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
+          
+          appearance: textfield;
+        }
+      }
+    }
+
+    // BOUTONS (Ajouter + Annuler)
+    .form-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+
+      .submit-btn {
+        flex: 1;
+        padding: 0.9rem;
+        font-family: 'Montserrat', 'Avenir', sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: $text-light;
+        background: linear-gradient(135deg, $primary-green 0%, $primary-dark 100%);
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba($primary-green, 0.35);
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+      }
+
+      .cancel-btn {
+        flex: 0.4;
+        padding: 0.9rem;
+        font-family: 'Montserrat', 'Avenir', sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: $primary-dark;
+        background: rgba($secondary-beige, 0.3);
+        border: 2px solid rgba($secondary-beige, 0.5);
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: rgba($secondary-beige, 0.5);
+        }
+      }
+    }
+  }
+}
 
 // Responsive
 @media (max-width: 768px) {
- .ajout-produit-container {
-   margin: 1rem;
-   padding: 1.5rem;
+  .ajout-produit-container {
+    padding: 1.5rem;
+    width: 95%;
 
+    h2 {
+      font-size: 1.3rem;
+    }
 
-   h2 {
-     font-size: 1.3rem;
-   }
-
-
-   .ajout-form {
-     .form-group {
-       input {
-         font-size: 0.95rem;
-         padding: 0.6rem 0.8rem;
-       }
-     }
-   }
- }
+    .ajout-form {
+      .form-group {
+        input {
+          font-size: 0.95rem;
+          padding: 0.6rem 0.8rem;
+        }
+      }
+    }
+  }
 }
 
-
 @media (max-width: 480px) {
- .ajout-produit-container {
-   padding: 1rem;
+  .ajout-produit-container {
+    padding: 1rem;
 
+    h2 {
+      font-size: 1.1rem;
+    }
 
-   h2 {
-     font-size: 1.1rem;
-   }
+    .ajout-form {
+      .form-actions {
+        flex-direction: column;
 
-
-   .ajout-form {
-     .submit-btn {
-       font-size: 0.9rem;
-       padding: 0.7rem;
-     }
-   }
- }
+        .submit-btn,
+        .cancel-btn {
+          font-size: 0.9rem;
+          padding: 0.7rem;
+        }
+      }
+    }
+  }
 }
