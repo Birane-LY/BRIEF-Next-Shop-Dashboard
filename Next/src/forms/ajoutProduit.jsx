@@ -78,7 +78,7 @@ function AjoutProduit({ onClose }) {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+    const handleSubmit = (e) => {
     e.preventDefault();
     
     if (!validate()) return;
@@ -95,26 +95,28 @@ function AjoutProduit({ onClose }) {
         image: imagePreview || 'https://via.placeholder.com/40',
       };
       
-      const result = addProduit(productData);
+      // On exécute l'action du contexte
+      addProduit(productData);
       
-      if (result && result.success) {
-        setProduit({
-          product: '',
-          amount: '',
-          description: '',
-          stocks: '',
-          category: categories[0] || '',
-          image: null,
-        });
-        setImagePreview(null);
-        onClose();
-      }
+      // On réinitialise et on ferme directement
+      setProduit({
+        product: '',
+        amount: '',
+        description: '',
+        stocks: '',
+        category: categories[0] || '',
+        image: null,
+      });
+      setImagePreview(null);
+      onClose(); // Ferme le formulaire à coup sûr
+      
     } catch (error) {
       alert('Erreur: ' + error.message);
+    } finally {
+      setLoading(false);
     }
-    
-    setLoading(false);
   };
+
 
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) onClose();
