@@ -433,6 +433,4 @@ function ProductDetail() {
 ---
 
 ## Auteur
-
-Birane LY — Formation Développement Web & Mobile  
-[github.com/Birane-LY](https://github.com/Birane-LY)
+Adji Aissatou Wade Samb & Birane LY 
