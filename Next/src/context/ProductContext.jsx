@@ -29,7 +29,8 @@ export const ProductProvider = ({ children }) => {
 
   // Ajouter un produit
   const addProduit = (produit) => {
-    const newId = Date.now();
+    const newId = Date.now().toString(36).slice(-4);
+
     
     const newProduct = {
       id: newId,

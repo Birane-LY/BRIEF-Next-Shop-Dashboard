@@ -13,10 +13,9 @@ function AjoutProduit({ onClose }) {
     description: '',
     stocks: '',
     category: categories[0] || '',
-    image: null,
+    image: null, // Contiendra la chaîne Base64 finale pour l'affichage ultérieur
   });
   
-  const [imagePreview, setImagePreview] = useState(null);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
@@ -28,13 +27,13 @@ function AjoutProduit({ onClose }) {
     }
   };
 
+  // Convertit l'image directement en Base64 à la sélection
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setProduit({ ...produit, image: file });
       const reader = new FileReader();
       reader.onloadend = () => {
-        setImagePreview(reader.result);
+        setProduit({ ...produit, image: reader.result });
       };
       reader.readAsDataURL(file);
     }
@@ -78,9 +77,8 @@ function AjoutProduit({ onClose }) {
     return Object.keys(newErrors).length === 0;
   };
 
-    const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    
     if (!validate()) return;
 
     setLoading(true);
@@ -92,13 +90,11 @@ function AjoutProduit({ onClose }) {
         description: produit.description || '',
         stocks: produit.stocks,
         category: produit.category,
-        image: imagePreview || 'https://via.placeholder.com/40',
+        image: produit.image || 'https://via.placeholder.com/40', // Image soumise ou placeholder
       };
       
-      // On exécute l'action du contexte
       addProduit(productData);
       
-      // On réinitialise et on ferme directement
       setProduit({
         product: '',
         amount: '',
@@ -107,8 +103,8 @@ function AjoutProduit({ onClose }) {
         category: categories[0] || '',
         image: null,
       });
-      setImagePreview(null);
-      onClose(); // Ferme le formulaire à coup sûr
+      
+      onClose(); // Ferme le formulaire avec certitude
       
     } catch (error) {
       alert('Erreur: ' + error.message);
@@ -116,7 +112,6 @@ function AjoutProduit({ onClose }) {
       setLoading(false);
     }
   };
-
 
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) onClose();
@@ -205,21 +200,6 @@ function AjoutProduit({ onClose }) {
               accept="image/*"
               className="file-input"
             />
-            {imagePreview && (
-              <div className="image-preview">
-                <img src={imagePreview} alt="Aperçu" />
-                <button 
-                  type="button" 
-                  className="remove-image"
-                  onClick={() => {
-                    setImagePreview(null);
-                    setProduit({ ...produit, image: null });
-                  }}
-                >
-                  ✕
-                </button>
-              </div>
-            )}
           </div>
 
           <div className="form-actions">
@@ -237,6 +217,7 @@ function AjoutProduit({ onClose }) {
 }
 
 export default AjoutProduit;
+
 // import { useState } from "react"
 // import './ajoutProduit.scss'
 
