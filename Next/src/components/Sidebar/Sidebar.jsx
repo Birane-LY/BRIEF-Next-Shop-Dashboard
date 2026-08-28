@@ -44,7 +44,7 @@ const Sidebar = () => {
               <span>Produits</span>
             </li>
           </Link>
-            <li>
+            {/* <li>
               <PersonIcon className='icon' />
               <span>Utilisateurs</span>
             </li>
@@ -63,7 +63,7 @@ const Sidebar = () => {
           <li>
             <AccountIcon className='icon' />
             <span>Profil</span>
-          </li>
+          </li> */}
         </ul>
       </div>
 

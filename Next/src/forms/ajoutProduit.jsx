@@ -46,36 +46,52 @@ function AjoutProduit({ onClose }) {
     }
   };
 
-  const validate = () => {
-    const newErrors = {};
+ const validate = () => {
+  const newErrors = {};
+  
+  // Validation du nom - lettres obligatoires, chiffres et caractères spéciaux optionnels
+  if (!produit.product || produit.product.trim().length < 2) {
+    newErrors.product = 'Nom trop court (min 2 caractères)';
+  } else {
+    // Vérifie que le nom contient au moins une lettre
+    const hasLetter = /[a-zA-Z]/.test(produit.product);
     
-    if (!produit.product || produit.product.trim().length < 2) {
-      newErrors.product = 'Nom trop court (min 2 caractères)';
+    if (!hasLetter) {
+      newErrors.product = 'Le nom doit contenir au moins une lettre';
     }
     
-    if (!produit.amount) {
-      newErrors.amount = 'Le prix est requis';
-    } else if (parseFloat(produit.amount) < 0) {
-      newErrors.amount = 'Le prix ne peut pas être négatif';
-    } else if (produit.amount.toString().length < 3) {
-      newErrors.amount = 'Prix minimum: 100 CFA';
-    }
+    // Optionnel : Vérifier la présence de chiffres ou caractères spéciaux (juste pour information)
+    const hasNumber = /[0-9]/.test(produit.product);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(produit.product);
     
-    if (!produit.stocks) {
-      newErrors.stocks = 'Le stock est requis';
-    } else if (parseInt(produit.stocks) < 0) {
-      newErrors.stocks = 'Le stock ne peut pas être négatif';
-    } else if (parseInt(produit.stocks) === 0) {
-      newErrors.stocks = 'Le stock doit être supérieur à 0';
-    }
-    
-    if (!produit.category) {
-      newErrors.category = 'Sélectionnez une catégorie';
-    }
-    
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
+    // Vous pouvez ajouter un message d'information mais pas d'erreur
+    // Les chiffres et caractères spéciaux ne sont pas obligatoires
+  }
+  
+  // ... reste de la validation existante
+  if (!produit.amount) {
+    newErrors.amount = 'Le prix est requis';
+  } else if (parseFloat(produit.amount) < 0) {
+    newErrors.amount = 'Le prix ne peut pas être négatif';
+  } else if (produit.amount.toString().length < 3) {
+    newErrors.amount = 'Prix minimum: 100 CFA';
+  }
+  
+  if (!produit.stocks) {
+    newErrors.stocks = 'Le stock est requis';
+  } else if (parseInt(produit.stocks) < 0) {
+    newErrors.stocks = 'Le stock ne peut pas être négatif';
+  } else if (parseInt(produit.stocks) === 0) {
+    newErrors.stocks = 'Le stock doit être supérieur à 0';
+  }
+  
+  if (!produit.category) {
+    newErrors.category = 'Sélectionnez une catégorie';
+  }
+  
+  setErrors(newErrors);
+  return Object.keys(newErrors).length === 0;
+};
 
   const handleSubmit = (e) => {
     e.preventDefault();
